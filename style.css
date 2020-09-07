@@ -15,6 +15,11 @@ p {
   color: #333;
 }
 
+.quote {
+  width: 75px;
+  height: auto;
+}
+
 .member {
   width: 100px;
   border-radius: 100%;

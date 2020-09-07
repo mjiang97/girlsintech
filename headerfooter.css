@@ -1,0 +1,95 @@
+/*STYLING THE NAVIGATION MENU*/
+
+.nav {
+  margin-top: 0;
+  padding: 20px;
+  overflow: hidden;
+  background-color: #F394C5;
+}
+
+.nav a {
+  float: left;
+  display: block;
+  text-align: center;
+  color: #333;
+  text-decoration: none;
+  padding: 20px;
+  font-size: 18px;
+}
+
+.nav a:hover {
+  font-size: 20px;
+  color: white;
+}
+
+.nav a.active {
+  color: white;
+}
+
+.nav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .nav a:not(:first-child) {
+    display: none;
+  }
+
+  .nav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav.responsive {
+    position: relative;
+  }
+
+  .nav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .nav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+/*BODY*/
+.page-container {
+  width: 80%;
+  margin: auto;
+  height: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .page-container {
+    width: 100%;
+  }
+}
+
+@media screen and(min-width: 1000px) {
+  .page-container {
+    width: 70%;
+  }
+}
+
+/*FOOTER*/
+
+footer {
+  clear: both;
+  position: relative;
+  height: 100px;
+  margin-bottom: 0px;
+  background-color: #F394C5;
+}
+
+footer p {
+  color: white;
+  margin: 5px;
+  padding: 10px;
+}

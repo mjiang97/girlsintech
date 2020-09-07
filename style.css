@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  font-family: Poppins;
+  color: #333;
+  text-align: center;
+}
+
+h1 {
+  font-family: Share Tech Mono;
+  color: #F394C5;
+}
+
+p {
+  text-align: center;
+  color: #333;
+}
+
+.member {
+  width: 100px;
+  border-radius: 100%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.member:hover {
+  width: 120px;
+  transition: 0.3s;
+}
+
+.container {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.picture img {
+  width: 100%;
+  padding-top: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .picture,
+  .text {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .picture img {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/*STYLING THE HEADER*/
+
+.header {
+  color: white;
+  background-color: #333;
+  height: 100vh;
+  font-size: 15px;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 7% 94%, 0% 60%);
+}
+
+.main-heading {
+  margin-top: 0;
+  font-size: 60px;
+  padding-top: 28vh;
+  text-shadow: 0 0 2px #fff;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.console-container {
+  font-family: Poppins;
+  font-size: 4em;
+  text-align: center;
+  height: 40vh;
+  width: 80%;
+  display: block;
+  position: absolute;
+  color: white;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.console-underscore {
+  display: inline-block;
+  position: relative;
+}
+
+@media screen and (max-width: 800px) {
+  .console-container {
+    height: auto;
+    margin-top: 250px;
+    font-size: 45px;
+  }
+}
+
+.responsive:active {
+  .console-container {
+    display: none;
+  }
+}
+
+/*Quote*/

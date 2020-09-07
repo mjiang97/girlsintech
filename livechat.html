@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LiveChat | GT</title>
+    <link rel="stylesheet" href="livechat.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="headerfooter.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="nav" id="myNav">
+      <a href="index.html" class="active">Home</a>
+      <a href="learn2code.html">Learn2Code</a>
+      <a href="livechat.html">Livechat</a>
+      <a href="contact.html">Contact</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <h1>
+      Let's talk C&female;DE
+    </h1>
+
+    <!--CHAT-->
+
+    <form onsubmit="return sendMessage();">
+      <div class="chat-container">
+        <ul id="messages" class="messages"></ul>
+        <div class="send-container">
+          <input
+            class="send-message"
+            id="message"
+            placeholder="Enter message"
+            autocomplete="off"
+          />
+          <input type="submit" class="submit-btn" value="Send"/>
+        </div>
+      </div>
+    </form>
+
+    <footer class="footer">
+      <p>&copy; All rights reserved</p>
+      <p>Made with ♥ by Albina</p>
+    </footer>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+
+    <!-- include firebase database -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-database.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCIURgtf-4eQoa2Cw2Svp1nrjI3X3rtzds",
+        authDomain: "mylivechatgt.firebaseapp.com",
+        databaseURL: "https://mylivechatgt.firebaseio.com",
+        projectId: "mylivechatgt",
+        storageBucket: "mylivechatgt.appspot.com",
+        messagingSenderId: "867802753588",
+        appId: "1:867802753588:web:97aa3de168593f30e0b861",
+        measurementId: "G-FPCZFWVCNE"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      var myName = prompt("Enter your name");
+
+      function sendMessage() {
+        // get message
+        var message = document.getElementById("message").value;
+
+        // save in database
+        firebase
+          .database()
+          .ref("messages")
+          .push()
+          .set({
+            sender: myName,
+            message: message
+          });
+        document.getElementById("message").value = "";
+        // prevent form from submitting
+        return false;
+      }
+
+      // listen for incoming messages
+      firebase
+        .database()
+        .ref("messages")
+        .on("child_added", function(snapshot) {
+          var html = "";
+          // give each message a unique ID
+          html += "<li id='message-" + snapshot.key + "'>";
+          // show delete button if message is sent by me
+          if (snapshot.val().sender == myName) {
+            html +=
+              "<button data-id='" +
+              snapshot.key +
+              "' onclick='deleteMessage(this);'>";
+            html += "-X-";
+            html += "</button>";
+          }
+          html += snapshot.val().sender + ": " + snapshot.val().message;
+          html += "</li>";
+
+          document.getElementById("messages").innerHTML += html;
+        });
+
+      function deleteMessage(self) {
+        // get message ID
+        var messageId = self.getAttribute("data-id");
+
+        // delete message
+        firebase
+          .database()
+          .ref("messages")
+          .child(messageId)
+          .remove();
+      }
+
+      // attach listener for delete message
+      firebase
+        .database()
+        .ref("messages")
+        .on("child_removed", function(snapshot) {
+          // remove message node
+          document.getElementById("message-" + snapshot.key).innerHTML =
+            "This message has been removed";
+        });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
